@@ -16,8 +16,8 @@ echo "Installing XDNA 1.0.1.0"
 mkdir ./xdna-temp && cd ./xdna-temp
 wget $TARBALLURL
 unzip $TARBALLNAME && mv bin xdna-$XDNAVERSION
-yes | sudo cp -rf ./xdna-$XDNAVERSION/xdnad /usr/local/bin
-yes | sudo cp -rf ./xdna-$XDNAVERSION/xdna-cli /usr/local/bin
+yes | sudo cp -rf ./xdna-$XDNAVERSION/xdnad /usr/bin
+yes | sudo cp -rf ./xdna-$XDNAVERSION/xdna-cli /usr/bin
 cd ..
 rm -rf ./xdna-temp
 sed -i '/^addnode/d' ~/.xdna/xdna.conf
