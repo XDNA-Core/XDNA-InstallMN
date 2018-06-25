@@ -73,9 +73,9 @@ fi
 wget $TARBALLURL
 sudo unzip $TARBALLNAME
 sudo rm $TARBALLNAME
-sudo cp ./XDNA-InstallMN/xdnad /usr/local/bin
-sudo cp ./XDNA-InstallMN/xdna-cli /usr/local/bin
-sudo cp ./XDNA-InstallMN/xdna-tx /usr/local/bin
+sudo cp xdnad /usr/local/bin
+sudo cp xdna-cli /usr/local/bin
+sudo cp xdna-tx /usr/local/bin
 xdnad -daemon
 clear
 
