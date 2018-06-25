@@ -73,9 +73,9 @@ fi
 wget $TARBALLURL
 sudo unzip $TARBALLNAME && mv bin xdna-$XDNAVERSION
 sudo rm $TARBALLNAME
-sudo cp ./xdna-$XDNAVERSION/xdnad /usr/bin
-sudo cp ./xdna-$XDNAVERSION/xdna-cli /usr/bin
-sudo cp ./xdna-$XDNAVERSION/xdna-tx /usr/bin
+sudo cp ./xdna-$XDNAVERSION/xdnad /usr/local/bin
+sudo cp ./xdna-$XDNAVERSION/xdna-cli /usr/local/bin
+sudo cp ./xdna-$XDNAVERSION/xdna-tx /usr/local/bin
 xdnad -daemon
 clear
 
@@ -107,27 +107,15 @@ masternode=1
 sudo chmod 0600 ~/.xdna/xdna.conf
 
 #Starting coin
-cat > /etc/systemd/system/xdnad.service << EOL
-[Unit]
-Description=XDNA Core daemon
-After=network.target
-[Service]
-Type=forking
-User=${USER}
-WorkingDirectory=${USERHOME}
-ExecStart=/usr/local/bin/xdnad -conf=${USERHOME}/.xdna/xdna.conf -datadir=${USERHOME}/.xdna
-ExecStop=/usr/local/bin/xdna-cli -conf=${USERHOME}/.xdna/xdna.conf -datadir=${USERHOME}/.xdna stop
-Restart=on-failure
-RestartSec=1m
-StartLimitIntervalSec=5m
-StartLimitInterval=5m
-StartLimitBurst=3
-[Install]
-WantedBy=multi-user.target
-EOL
-systemctl enable xdnad
-echo "Starting xdnad..."
-systemctl start xdnad
+(
+  crontab -l 2>/dev/null
+  echo '@reboot sleep 30 && xdnad -daemon -shrinkdebugfile'
+) | crontab
+(
+  crontab -l 2>/dev/null
+  echo '@reboot sleep 60 && xdna-cli startmasternode local false'
+) | crontab
+xdnad -daemon
 
 clear
 echo $STRING2
