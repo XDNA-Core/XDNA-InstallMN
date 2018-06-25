@@ -71,9 +71,9 @@ fi
 wget $TARBALLURL
 sudo unzip $TARBALLNAME && mv bin xdna-$XDNAVERSION
 sudo rm $TARBALLNAME
-sudo cp ./xdna-$XDNAVERSION/xdnad /usr/bin
-sudo cp ./xdna-$XDNAVERSION/xdna-cli /usr/bin
-sudo cp ./xdna-$XDNAVERSION/xdna-tx /usr/bin
+sudo cp ./xdna-$XDNAVERSION/xdnad /usr/local/bin
+sudo cp ./xdna-$XDNAVERSION/xdna-cli /usr/local/bin
+sudo cp ./xdna-$XDNAVERSION/xdna-tx /usr/local/bin
 xdnad -daemon
 clear
 
