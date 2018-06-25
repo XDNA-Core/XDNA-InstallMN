@@ -5,6 +5,9 @@ clear
 TARBALLURL="https://github.com/XDNA-Core/XDNA/releases/download/v1.0.1.0/ubuntu16.04-daemon.zip"
 TARBALLNAME="ubuntu16.04-daemon.zip"
 XDNAVERSION="1.0.1.0"
+# Get our current IP
+EXTERNALIP=`dig +short myip.opendns.com @resolver1.opendns.com`
+clear
 
 STRING1="Make sure you double check before hitting enter! Only one shot at these!"
 STRING2="If you found this helpful, please donate: "
@@ -23,7 +26,6 @@ STRING14="Please Wait a minimum of 5 minutes before proceeding, the node wallet 
 
 echo $STRING1
 
-read -e -p "Server IP Address : " ip
 read -e -p "Masternode Private Key (e.g. 88slDBwobwx6u9NfBwjS6y7dL8f6Rtnv31wwj1qJPNALYNnLt8 # THE KEY YOU GENERATED EARLIER) : " key
 read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
 read -e -p "Install UFW and configure ports? [Y/n] : " UFW
@@ -96,24 +98,36 @@ server=1
 daemon=1
 logtimestamps=1
 maxconnections=256
-externalip='$ip'
-bind='$ip':1945
-masternodeaddr='$ip':1945
+externalip='$EXTERNALIP'
+bind='$EXTERNALIP':1945
+masternodeaddr='$EXTERNALIP':1945
 masternodeprivkey='$key'
 masternode=1
 ' | sudo -E tee ~/.xdna/xdna.conf >/dev/null 2>&1
 sudo chmod 0600 ~/.xdna/xdna.conf
 
 #Starting coin
-(
-  crontab -l 2>/dev/null
-  echo '@reboot sleep 30 && xdnad -daemon -shrinkdebugfile'
-) | crontab
-(
-  crontab -l 2>/dev/null
-  echo '@reboot sleep 60 && xdna-cli startmasternode local false'
-) | crontab
-xdnad -daemon
+cat > /etc/systemd/system/xdnad.service << EOL
+[Unit]
+Description=XDNA Core daemon
+After=network.target
+[Service]
+Type=forking
+User=${USER}
+WorkingDirectory=${USERHOME}
+ExecStart=/usr/local/bin/xdnad -conf=${USERHOME}/.xdna/xdna.conf -datadir=${USERHOME}/.xdna
+ExecStop=/usr/local/bin/xdna-cli -conf=${USERHOME}/.xdna/xdna.conf -datadir=${USERHOME}/.xdna stop
+Restart=on-failure
+RestartSec=1m
+StartLimitIntervalSec=5m
+StartLimitInterval=5m
+StartLimitBurst=3
+[Install]
+WantedBy=multi-user.target
+EOL
+systemctl enable xdnad
+echo "Starting xdnad..."
+systemctl start xdnad
 
 clear
 echo $STRING2
