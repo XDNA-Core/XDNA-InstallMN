@@ -35,10 +35,21 @@ masternode outputs
 Write this down or copy it somewhere safe.
 
 
-SSH (Putty on Windows, Terminal.app on macOS) to your VPS, login to root, and install git if it isn't installed already.
+SSH (Putty on Windows, Terminal.app on macOS) to your VPS, login to root, and add new user if it isn not created already.
 
 ```bash
-apt-get -y install git
+adduser YOURUSERNAME
+```
+Then add your newly created user to sudoers group.
+
+```bash
+gpasswd -a YOURUSERNAME sudo
+```
+Disconnect from your VPS and reconnect from your newly created user.
+Then install git if it isn't installed already.
+
+```bash
+sudo apt-get -y install git
 ```
 
 Then clone the Github repository.
