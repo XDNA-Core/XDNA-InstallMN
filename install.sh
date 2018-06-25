@@ -71,11 +71,11 @@ fi
 
 #Install XDNA Daemon
 wget $TARBALLURL
-sudo unzip $TARBALLNAME && mv bin xdna-$XDNAVERSION
+sudo unzip $TARBALLNAME
 sudo rm $TARBALLNAME
-sudo cp ./xdna-$XDNAVERSION/xdnad /usr/local/bin
-sudo cp ./xdna-$XDNAVERSION/xdna-cli /usr/local/bin
-sudo cp ./xdna-$XDNAVERSION/xdna-tx /usr/local/bin
+sudo cp ./XDNA-InstallMN/xdnad /usr/local/bin
+sudo cp ./XDNA-InstallMN/xdna-cli /usr/local/bin
+sudo cp ./XDNA-InstallMN/xdna-tx /usr/local/bin
 xdnad -daemon
 clear
 
