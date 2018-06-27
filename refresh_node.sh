@@ -15,4 +15,4 @@ sed -i '/^addnode/d' ~/.xdna/xdna.conf
 cat <<EOL >>  ~/.xdna/xdna.conf
 EOL
 
-xdnad -daemon
+xdnad
