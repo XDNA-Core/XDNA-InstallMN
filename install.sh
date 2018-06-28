@@ -108,7 +108,7 @@ masternodeaddr='$EXTERNALIP':1945
 masternodeprivkey='$key'
 masternode=1
 ' | sudo -E tee ~/.xdna/xdna.conf >/dev/null 2>&1
-sudo chmod 0600 ~/.xdna/xdna.conf
+chmod 0600 ~/.xdna/xdna.conf
 
 #Starting coin
 (
