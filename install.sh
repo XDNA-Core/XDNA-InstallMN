@@ -76,6 +76,10 @@ sudo rm $TARBALLNAME
 sudo cp xdnad /usr/local/bin
 sudo cp xdna-cli /usr/local/bin
 sudo cp xdna-tx /usr/local/bin
+cd /usr/local/bin
+chmod +x /usr/local/bin/xdnad
+chmod +x /usr/local/bin/xdna-cli
+chmod +x /usr/local/bin/xdna-tx
 xdnad -daemon
 clear
 
