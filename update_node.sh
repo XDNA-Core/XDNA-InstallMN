@@ -20,6 +20,9 @@ sudo rm $TARBALLNAME
 yes | sudo cp -rf xdnad /usr/local/bin
 yes | sudo cp -rf xdna-cli /usr/local/bin
 yes | sudo cp -rf xdna-tx /usr/local/bin
+sudo chmod +x /usr/local/bin/xdnad
+sudo chmod +x /usr/local/bin/xdna-cli
+sudo chmod +x /usr/local/bin/xdna-tx
 cd ..
 sed -i '/^addnode/d' ~/.xdna/xdna.conf
 cat <<EOL >>  ~/.xdna/xdna.conf
