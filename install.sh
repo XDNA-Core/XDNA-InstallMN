@@ -1,5 +1,10 @@
 #!/bin/bash
-clear
+
+# Limit this script to being used as a root user.
+if [[ $EUID -eq 0 ]]; then
+  echo "This script must NOT be run as root" 1>&2
+  exit 1
+fi
 
 # Set these to change the version of XDNA to install
 TARBALLURL="https://github.com/XDNA-Core/XDNA/releases/download/v1.0.2.0/ubuntu16.04-daemon.zip"
