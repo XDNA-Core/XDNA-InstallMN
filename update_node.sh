@@ -1,18 +1,18 @@
 #!/bin/bash
 
-TARBALLURL="https://github.com/XDNA-Core/XDNA/releases/download/v1.0.2.0/ubuntu16.04-daemon.zip"
+TARBALLURL="https://github.com/XDNA-Core/XDNA/releases/download/v1.1.0.0/ubuntu16.04-daemon.zip"
 TARBALLNAME="ubuntu16.04-daemon.zip"
-XDNAVERSION="1.0.2.0"
+XDNAVERSION="1.1.0.0"
 
 clear
-echo "This script will update your masternode to version 1.0.2.0"
+echo "This script will update your masternode to version 1.1.0.0"
 read -p "Press Ctrl-C to abort or any other key to continue. " -n1 -s
 clear
 echo "Please enter your password to enter administrator mode:"
 sudo true
 echo "Shutting down masternode..."
 xdna-cli stop
-echo "Installing XDNA 1.0.2.0"
+echo "Installing XDNA 1.1.0.0"
 mkdir ./xdna-temp && cd ./xdna-temp
 wget $TARBALLURL
 unzip $TARBALLNAME

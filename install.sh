@@ -7,9 +7,9 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 # Set these to change the version of XDNA to install
-TARBALLURL="https://github.com/XDNA-Core/XDNA/releases/download/v1.0.2.0/ubuntu16.04-daemon.zip"
+TARBALLURL="https://github.com/XDNA-Core/XDNA/releases/download/v1.1.0.0/ubuntu16.04-daemon.zip"
 TARBALLNAME="ubuntu16.04-daemon.zip"
-XDNAVERSION="1.0.2.0"
+XDNAVERSION="1.1.0.0"
 # Get our current IP
 EXTERNALIP=`dig +short myip.opendns.com @resolver1.opendns.com`
 clear
