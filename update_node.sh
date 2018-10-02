@@ -28,7 +28,7 @@ sed -i '/^addnode/d' ~/.xdna/xdna.conf
 cat <<EOL >>  ~/.xdna/xdna.conf
 EOL
 echo "Restarting XDNA daemon..."
-xdnad -reindex
+xdnad
 clear
 read -p "Please wait at least 5 minutes for the wallet to load, then press any key to continue." -n1 -s
 clear
