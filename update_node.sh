@@ -12,7 +12,7 @@ echo "Please enter your password to enter administrator mode:"
 sudo true
 echo "Shutting down masternode..."
 xdna-cli stop
-echo "Installing XDNA 1.2.1.0"
+echo "Installing XDNA 1.3.0.0"
 mkdir ./xdna-temp && cd ./xdna-temp
 wget $TARBALLURL
 unzip $TARBALLNAME
