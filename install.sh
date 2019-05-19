@@ -11,7 +11,7 @@ TARBALLURL="https://github.com/XDNA-Core/XDNA/releases/download/v1.3.0.0/ubuntu1
 TARBALLNAME="ubuntu16.04-daemon.zip"
 XDNAVERSION="1.3.0.0"
 # Get our current IP
-EXTERNALIP=`dig +short myip.opendns.com @resolver1.opendns.com`
+EXTERNALIP=$(curl -s4 api.ipify.org)
 clear
 
 STRING1="Make sure you double check before hitting enter! Only one shot at these!"
