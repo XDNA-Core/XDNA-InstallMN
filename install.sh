@@ -7,9 +7,9 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 # Set these to change the version of XDNA to install
-TARBALLURL="https://github.com/XDNA-Core/XDNA/releases/download/v1.3.0.0/ubuntu16.04-daemon.zip"
+TARBALLURL="https://github.com/XDNA-Core/XDNA/releases/download/v2.0.0.0/ubuntu16.04-daemon.zip"
 TARBALLNAME="ubuntu16.04-daemon.zip"
-XDNAVERSION="1.3.0.0"
+XDNAVERSION="2.0.0.0"
 # Get our current IP
 EXTERNALIP=$(curl -s4 api.ipify.org)
 clear
@@ -50,7 +50,7 @@ sudo apt-get -y upgrade
 sudo apt-get -y autoremove
 sudo apt-get -y install wget nano htop
 sudo apt-get -y install build-essential && sudo apt-get -y install libtool autotools-dev autoconf automake && sudo apt-get -y install libssl-dev && sudo apt-get -y install libboost-all-dev && sudo apt install software-properties-common && sudo add-apt-repository ppa:bitcoin/bitcoin && sudo apt update && sudo apt-get -y install libdb4.8-dev && sudo apt-get -y install libdb4.8++-dev && sudo apt-get -y install libminiupnpc-dev && sudo apt-get -y install libqt4-dev libprotobuf-dev protobuf-compiler && sudo apt-get -y install libqrencode-dev && sudo apt-get -y install git && sudo apt-get -y install pkg-config
-sudo apt-get -y install libboost-all-dev libdb4.8-dev libdb4.8++-dev libminiupnpc-dev libzmq3-dev unzip
+sudo apt-get -y install libboost-all-dev libdb4.8-dev libdb4.8++-dev libminiupnpc-dev libzmq3-dev libevent-dev unzip
 clear
 echo $STRING5
 sudo apt-get -y install aptitude
@@ -80,12 +80,12 @@ sudo unzip $TARBALLNAME
 sudo rm $TARBALLNAME
 sudo cp xdnad /usr/local/bin
 sudo cp xdna-cli /usr/local/bin
-sudo cp xdna-tx /usr/local/bin
 cd /usr/local/bin
 sudo chmod +x /usr/local/bin/xdnad
 sudo chmod +x /usr/local/bin/xdna-cli
-sudo chmod +x /usr/local/bin/xdna-tx
 xdnad -daemon
+sleep 60
+xdna-cli stop
 clear
 
 #Setting up coin
@@ -106,10 +106,7 @@ listen=1
 server=1
 daemon=1
 logtimestamps=1
-maxconnections=256
-externalip='$EXTERNALIP'
-bind='$EXTERNALIP':1945
-masternodeaddr='$EXTERNALIP':1945
+masternodeaddr='$EXTERNALIP'
 masternodeprivkey='$key'
 masternode=1
 ' | sudo -E tee ~/.xdna/xdna.conf >/dev/null 2>&1
@@ -149,4 +146,4 @@ sleep 5m
 
 read -p "Press any key to continue... " -n1 -s
 xdna-cli startmasternode local false
-xdna-cli masternode status
+xdna-cli getmasternodestatus
