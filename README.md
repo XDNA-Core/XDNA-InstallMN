@@ -1,6 +1,6 @@
 ## Funding your Masternode
 
-* First, we will do the initial collateral TX and send exactly 1000 XDNA (LightNode), 3000 XDNA (MediumNode) or 5000 XDNA (FullNode) to one of our addresses. To keep things sorted (in case we setup more masternodes) we will label the addresses we use.
+* First, we will do the initial collateral TX and send exactly 5000 XDNA (LightNode), 10000 XDNA (MediumNode) or 50000 XDNA (FullNode) to one of our addresses. To keep things sorted (in case we setup more masternodes) we will label the addresses we use.
 
   - Open your XDNA wallet and switch to the "Receive" tab.
 
@@ -10,7 +10,7 @@
 
   - The generated address will now be labelled as MN1. If you want to setup more masternodes just repeat that steps so you end up with several addresses for the total number of nodes you wish to setup. Example: For 10 nodes you will need 10 addresses, label them all.
 
-  - Once all addresses are created send exact amount of XDNA (prior to MN level) to each one of them. Ensure that you send exact amount (ONLY 1000, OR 3000 OR 5000 XDNA) and do it in a single transaction. You can double check where the coins are coming from by checking it via coin control usually, that's not an issue.
+  - Once all addresses are created send exact amount of XDNA (prior to MN level) to each one of them. Ensure that you send exact amount (ONLY 5000, OR 10000 OR 50000 XDNA) and do it in a single transaction. You can double check where the coins are coming from by checking it via coin control usually, that's not an issue.
 
 * As soon as all transactions are done, we MUST wait no less that 15 confirmations. You can check this in your wallet or use the explorer. It should take around 15 minutes if all transaction have 15 confirmations.
 
@@ -97,7 +97,7 @@ An example would be
 mn1 127.0.0.2:1945 87fKbpBwobwx6u9NfBwjS6y7dL8f6Rtnv31wwj1qJPNALYNnLt8 0883e988b82e7c0ddacb451e33df34061b8fbdb26df706ef783adf9f6730a874 1
 ```
 
-_masternodename_ is a name you choose, _IP_ is the public IP of your VPS, masternodeprivatekey is the output from `masternode genkey`, and _collateralTxID_ & _outputID_ come from `masternode outputs`. Please note that _masternodename_ must not contain any spaces, and should not contain any special characters.
+_masternodename_ is a name you choose, _IP_ is the public IP of your VPS, masternodeprivatekey is the output from `createmasternodekey`, and _collateralTxID_ & _outputID_ come from `getmasternodeoutputs`. Please note that _masternodename_ must not contain any spaces, and should not contain any special characters.
 
 Open up the local wallet, unlock with your encryption password, and open up the Console.
 
