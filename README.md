@@ -21,7 +21,7 @@ Generate your Masternode Private Key
 In your wallet, click on Tools icon -> Console and run the following command:
 
 ```bash
-masternode genkey
+createmasternodekey
 ```
 
 Write this down or copy it somewhere safe.
@@ -29,7 +29,7 @@ Write this down or copy it somewhere safe.
 View your Output (Also in the Console):
 
 ```bash
-masternode outputs
+getmasternodeoutputs
 ```
 
 Write this down or copy it somewhere safe.
